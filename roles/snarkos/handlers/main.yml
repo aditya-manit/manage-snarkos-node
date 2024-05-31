@@ -1,0 +1,5 @@
+---
+- name: Restart snarkOS
+  systemd:
+    name: snarkos
+    state: restarted

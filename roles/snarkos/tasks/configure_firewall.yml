@@ -1,0 +1,10 @@
+---
+- name: Configure firewall rules for snarkOS
+  ufw:
+    rule: allow
+    port: "{{ item.port }}"
+    proto: "{{ item.proto }}"
+  with_items:
+    - { port: 5000, proto: tcp }
+    - { port: 4133, proto: tcp }
+    - { port: 3033, proto: tcp }

@@ -1,0 +1,4 @@
+---
+snarkos_user: snarkosadm
+snarkos_group: snarkos
+working_directory: /home/snarkosadm

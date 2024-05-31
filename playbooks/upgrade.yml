@@ -1,0 +1,12 @@
+---
+- name: Upgrade snarkOS
+  hosts: snarkos_hosts
+  become: yes
+  vars_files:
+    - ../vars/snarkos_vars.yml
+  roles:
+    - snarkos
+  tasks:
+    - include_role:
+        name: snarkos
+        tasks_from: upgrade_snarkos

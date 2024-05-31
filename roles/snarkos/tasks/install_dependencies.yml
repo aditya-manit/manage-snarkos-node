@@ -1,0 +1,33 @@
+---
+- name: Install required system packages
+  apt:
+    name:
+      - build-essential
+      - curl
+      - clang
+      - gcc
+      - libssl-dev
+      - llvm
+      - make
+      - pkg-config
+      - tmux
+      - xz-utils
+    state: present
+    update_cache: yes
+
+- name: Ensure snarkosadm user exists
+  user:
+    name: "{{ snarkos_user }}"
+    group: "{{ snarkos_group }}"
+    create_home: yes
+
+- name: Install Rust for snarkosadm
+  become_user: "{{ snarkos_user }}"
+  shell: |
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    source ${HOME}/.cargo/env
+  args:
+    creates: "{{ working_directory }}/.cargo/bin/cargo"
+    executable: /bin/bash
+  environment:
+    HOME: "{{ working_directory }}"

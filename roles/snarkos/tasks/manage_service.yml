@@ -1,0 +1,5 @@
+---
+- name: Manage snarkOS service
+  systemd:
+    name: snarkos
+    state: "{{ service_action }}"
